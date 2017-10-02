@@ -1,0 +1,3 @@
+24-10-2016	--	Added option to subscribe the widget to a referenced object, if set. If that object is refreshed, the widget reloads as well.
+
+init 				-- 	Widget releases any object it fetches over an association from the context object

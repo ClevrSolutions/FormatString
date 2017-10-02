@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="formatstring.widget.formatstring" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+	<name>Format string</name>
+	<description>Format string.</description>
+
+	<icon>
+	iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhk
+	iAAAAAlwSFlzAAAFMQAABTEBt+0oUgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3Nj
+	YXBlLm9yZ5vuPBoAAAT4SURBVGiB1VrNTxtHFP/N7Owaf6JUiFQNhJRUvfARckSV
+	sNTcmq9bI86tKg5EjXJqkHpKIxEiokr9GwBxzSEXUik98HXqpZGqcisOIaS4gPcT
+	78z0YAy79q7X2EDNTxrN+HnW/v32+b15j4VIKXGeQf9vAs3i3AtglYbnvzy/no4n
+	JzKZzE0hedyybDCFQWEKmKJAOVx7ZkU5GAyMHa0ppSCEQEoJIQQ4d8E5h+vywzXn
+	HC53wd2jmXMXLufgLgdVKBSFWqZhvjQN/cn9+w9/9/Il3hh49vOzod7LPctXrvS2
+	tbe3g1IFlmXCdV0QQkApLQ1CQSjxrCkoJb41IRSUEIAQQEoIKSGlgBASUgiIqrWA
+	FPJwLYQApQpimgYuOP7N5/H23Yb199v1Lx56RPg8oDH1h66u7rbBgWtwXRetEuCE
+	EPR+ehWpv/6Mf/jn/SMAX5ff8wmIt8Vup1NpWJZ15iSjUCwWkYgnkEqkb3ntPgGW
+	ZScIoS1z5yshIWE7dtxr82UhQ9db8u6XYegG8vm8z+bzAOccxeJ+y3rAcRwIzn02
+	vwAhICQCBRQKeygYe6dGLp3MIJ3O1NwjIcGF8Nl8AoQQQMjdN20DG+9yTdIMR3dX
+	T7SAg/PEiyoBEjLQA92XevBZ7+cnQDUYjuPAcZzamyQiBHAR5oD6vuCUISEheE0P
+	lNi3ahBLecSxDOrfwENjoBVAIEscPagO4pAY0PVCw1koncwglUo3dK0XMioGymk0
+	CJZjYvP9RkNfzC6xkxEQmUZ5uAe6PrnccBaybRu2bTd0rRdSIiqIw7PQSZFoBgRR
+	aVQIIOQkbgWUDjI/t7qDuBUgJSAjT+IGPTAzM9MUucHBQQwMDETsKnVsXlRUo6VS
+	ohHMzs42dF0ZqqpGCpCyxNGL6pM4wAPT09MYGxtDMpkM/fDl5eXjcvbBNM06epGI
+	Yk7KYA+srKxgbW0N4+Pj6O/vD/zo7e3t4zFuAEEHma+UKL8ppfQNLaahoBcw+XQS
+	M7Mz2D9oes56BHmgWkBACMQ0DTFNg6aq+PXVK/z0+DFyudPrDWpB1kyjnCMojWox
+	zfd668MWnk5N4s6du7jx5Q0QQjA3N9cwqdHR0br2lc6BiJYyKINqmlZtBPDmzR8Y
+	ujaEjo6OMxEAILqllAG/s1isWsC9e6PIjmSh6zo451haWjoOZx+2trbq2ldXSxkU
+	A14PXLjwER58/wCpVBq7u7vHJtEsGuqJywJGRrK4dfM2dF1HoVA4ZarViOwHBA/2
+	QCaTxrfffIeLFz/Gzs7OqZKMguCRxVz1STzx6EfYtl2T/Pz8fFPE+vv70dfXF7lP
+	1qqFwoq4vb29yAKvWQGapkUKiAxiHhID9VSni4uL9XINhK7r0HU9cl/NNMor/u54
+	HGxubjZ87XFQVxC3akMD1NETA60rgBBSu5ijlIKxqud+LQPGGFRV9du8LyglhmEY
+	yUqVrQLLsqAo1PTafB4oFt0Xr397DULI2TKrA4QQLC4twradF167zwO2bU/l1nN3
+	5+fnE8PDw4jH43BdF0KIw8eslXOQzTuXnxOXc3jYHGQjhIAxBtM0sbq6itx6zjQM
+	Y8onrDJgs9ns9c7Ozon29vavhBAJx3HAGIOmadA0DaqqHq69o2z3zoyxQwGu66JY
+	LGJ/f79qrhze91VVhRDC0nX9ZT6ff7KwsBD+oPs84tz/r8S5F/AfqCmjVAJVWGgA
+	AAAASUVORK5CYII=
+	</icon>
+
+	<properties>
+		<property key="notused" type="object" isList="true" required="false">
+			<caption>Attributes</caption>
+			<category>Data source</category>
+			<description></description>
+			<properties>
+				<property key="variablename" type="string" required="true">
+					<caption>Variable name</caption>
+					<category>Data source</category>
+					<description>Identifies the attribute value, this name should be used in 'Display string' property.</description>
+				</property>
+				<property key="attrs" type="attribute" allowNonPersistableEntities="true" isPath="optional" pathType="reference">
+					<caption>Attribute</caption>
+					<category>Data source</category>
+					<description>Value of this attribute will be used to replace ${your_Variable_Name}, defined in 'Display string' property</description>
+					<attributeTypes>
+						<attributeType name="AutoNumber"/>
+						<attributeType name="String" />
+						<attributeType name="Enum"/>
+						<attributeType name="Integer"/>
+						<attributeType name="Float"/>
+						<attributeType name="Long"/>
+						<attributeType name="DateTime"/>
+						<attributeType name="Currency"/>
+						<attributeType name="Decimal"/>
+						<attributeType name="Boolean"/>
+					</attributeTypes>
+				</property>
+				<property key="emptyReplacement" type="translatableString" required="false">
+					<caption>Empty value replacement</caption>
+					<category>Data source</category>
+					<description>This string will be used when an attribute returns empty. Note that this string is interpreted as HTML.</description>
+				</property>
+				<property key="datetimeformat" type="enumeration" defaultValue="datetime" >
+					<caption>Date format</caption>
+					<category>Behaviour</category>
+					<description>Shows date and/or time according to locale of user. Relative is time relative to current datetime. (E.g. 3 hours from now) </description>
+					<enumerationValues>
+						<enumerationValue key="datetime">Date and time </enumerationValue>
+						<enumerationValue key="date">Date</enumerationValue>
+						<enumerationValue key="time">Time</enumerationValue>
+						<enumerationValue key="relative">Relative</enumerationValue>
+					</enumerationValues>
+				</property>
+				<property key="datePattern" type="translatableString" required="false">
+					<caption>Date pattern</caption>
+					<category>Behaviour</category>
+					<description>Optional, date pattern to override date part according to dojo/date/locale</description>
+				</property>
+				<property key="timePattern" type="translatableString" required="false">
+					<caption>Time pattern</caption>
+					<category>Behaviour</category>
+					<description>Optional, time pattern to override time part according to dojo/date/locale</description>
+				</property>
+				<property key="renderHTML" type="boolean" defaultValue="false">
+					<caption>Render value as HTML</caption>
+					<category>Behaviour</category>
+					<description>Escapes string value when set to false</description>
+				</property>
+				<property key="decimalPrecision" type="integer" defaultValue="0">
+					<caption>Decimal precision</caption>
+					<category>Behaviour</category>
+					<description>Amount of decimals</description>
+				</property>
+				<property key="groupDigits" type="boolean" defaultValue="true">
+					<caption>Group digits</caption>
+					<category>Behaviour</category>
+					<description>Displays a numeric value with group digits</description>
+				</property>
+			</properties>
+		</property>
+		<property key="onclickmf" type="microflow" required="false">
+			<caption>On click</caption>
+			<category>Behavior</category>
+			<description>Microflow to be invoked on click.</description>
+			<returnType type="Void"/>
+		</property>
+		<property key="displaystr" type="string" multiline="true">
+			<caption>Display string</caption>
+			<category>Behavior</category>
+			<description>Use ${[your_Variable_Name]} to have the attribute value inserted in this string. Note that this string, except for the replacements, is interpreted as HTML. </description>
+		</property>
+		
+		<property key="release" type="boolean" required="true" defaultValue="false">
+			<caption>Release retrieved associated display object(s)</caption>
+			<category>Configuration</category>
+			<description>If set, it will inform the server to release the object associated retrieved for the display string</description>
+		</property>
+		<property key="releaseOnUpdate" type="boolean" required="true" defaultValue="false">
+			<caption>Release on update</caption>
+			<category>Configuration</category>
+			<description>If set, it will inform the server to release the object associated (if any)</description>
+		</property>
+		<property key="releaseAfterDisplay" type="boolean" required="true" defaultValue="false">
+			<caption>Release after display</caption>
+			<category>Configuration</category>
+			<description>If set, it will inform the server to release the object associated (if any)</description>
+		</property>
+		<property key="subscrAssocObj" type="entity" required="false" isPath="yes" pathType="reference">
+			<caption>Subscribe secondary</caption>
+			<category>Configuration</category>
+			<description>If set, it will subscribe the widget to this referenced object and update if that object is refreshed</description>
+		</property>
+	</properties>
+</widget>
