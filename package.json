@@ -1,17 +1,14 @@
 {
   "name": "format-string",
   "widgetName": "FormatString",
-  "version": "5.0.0",
+  "version": "5.6.0",
   "description": "",
   "copyright": "Mendix BV",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/MansystemsCorp/FormatString"
   },
   "license": "Apache-2.0",
-  "bugs": {
-    "url": ""
-  },
   "devDependencies": {
     "grunt": "1.0.1",
     "grunt-check-dependencies": "^1.0.0",
