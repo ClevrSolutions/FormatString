@@ -63,18 +63,21 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
           this._contextObj = obj;
             this._resetSubscriptions();
             this._loadData();
-            if(this.releaseOnUpdate === true){
-                if(this.release === true) this._releaseDisplayObjects();
-            }					
+            // if(this.releaseOnUpdate === true){
+            //     if(this.release === true) this._releaseDisplayObjects();
+            // }					
         }			  
         callback();
     },
-    _releaseDisplayObjects: function (){
-        if(this._releaseList.length > 0){
-            mx.data.release(this._releaseList);
+//     _releaseDisplayObjects: function (){
+//         if(this._releaseList.length > 0){
+//             mx.data.release(this._releaseList);
 //			console.log(this.id+"released");
-        }
-    },
+//         }
+    // },
+    // since version 7.0. Mendix objects don't have to be released anymore.
+    // A Mendix object is kept in cache as long as there is a subscription to it.
+
     _setupWidget: function () {
         this._wgtNode = this.domNode;
         domClass.add(this._wgtNode, 'formatstring_widget');
@@ -128,9 +131,9 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
                 value: value
             });
             if(obj != null) this._releaseList.push(obj);
-            if(this.releaseAfterDisplay === true && data.limit == true){
-                if(this.release === true) this._releaseDisplayObjects();
-            }
+            // if(this.releaseAfterDisplay === true && data.limit == true){
+            //     if(this.release === true) this._releaseDisplayObjects();
+            // }
             this._buildString();
         };
 
@@ -344,7 +347,7 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
     _resetSubscriptions: function () {
         // Release handle on previous object, if any.
         var i = 0;
-        this._releaseDisplayObjects();
+        // this._releaseDisplayObjects();
 
         for (i = 0; i < this._handles.length; i++) {
             if (this._handles[i]) {
