@@ -2,10 +2,24 @@
 /*global mx, define, require, browser, devel, console */
 /*mendix */
 
-define('formatstring/widget/formatstring', ['dojo/_base/declare', 'mxui/widget/_WidgetBase', 'dijit/_TemplatedMixin',
-'mxui/dom', 'dojo/dom', 'dojo/dom-class', 'dojo/_base/lang', 'dojo/text', 'dojo/json',
-'dojo/_base/kernel', 'dojo/_base/xhr', 'dojo/text!formatstring/lib/timeLanguagePack.json', 'dojo/text!formatstring/widget/template/formatstring.html'
-], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, domClass, lang, text, json, dojo, xhr, languagePack, widgetTemplate) {
+define('formatstring/widget/formatstring', [
+    'dojo/_base/declare',
+    'mxui/widget/_WidgetBase',
+    'dijit/_TemplatedMixin',
+    'mxui/dom',
+    'dojo/dom',
+    'dojo/dom-class',
+    'dojo/_base/lang',
+    'dojo/text',
+    'dojo/json',
+    'dojo/_base/kernel',
+    'dojo/_base/xhr',
+    'dojo/text!formatstring/lib/timeLanguagePack.json',
+    'dojo/text!formatstring/widget/template/formatstring.html',
+    'dojo/dom-construct',
+    'dojo/_base/config',
+    'dojo/date/locale'
+], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, domClass, lang, text, json, dojo, xhr, languagePack, widgetTemplate, construct, config, locale) {
 'use strict';
 
 return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin], {
@@ -30,11 +44,10 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
         
         // set localized formatting (from dojoConfig)
         this.localizedFormat = {};			
-        var locale = mx.ui.getLocale();
         
-        if (dojo.config.localizedFormats) {
-            dojo.config.localizedFormats.forEach(lang.hitch(this, function(format) {
-                if (format.locale == locale) {
+        if (config.localizedFormats) {
+            config.localizedFormats.forEach(lang.hitch(this, function (format) {
+                if (format.locale == dojo.locale) {
                     this.localizedFormat = format;
                 }
             }));
@@ -50,18 +63,21 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
           this._contextObj = obj;
             this._resetSubscriptions();
             this._loadData();
-            if(this.releaseOnUpdate === true){
-                if(this.release === true) this._releaseDisplayObjects();
-            }					
+            // if(this.releaseOnUpdate === true){
+            //     if(this.release === true) this._releaseDisplayObjects();
+            // }					
         }			  
         callback();
     },
-    _releaseDisplayObjects: function (){
-        if(this._releaseList.length > 0){
-            mx.data.release(this._releaseList);
+//     _releaseDisplayObjects: function (){
+//         if(this._releaseList.length > 0){
+//             mx.data.release(this._releaseList);
 //			console.log(this.id+"released");
-        }
-    },
+//         }
+    // },
+    // since version 7.0. Mendix objects don't have to be released anymore.
+    // A Mendix object is kept in cache as long as there is a subscription to it.
+
     _setupWidget: function () {
         this._wgtNode = this.domNode;
         domClass.add(this._wgtNode, 'formatstring_widget');
@@ -115,9 +131,9 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
                 value: value
             });
             if(obj != null) this._releaseList.push(obj);
-            if(this.releaseAfterDisplay === true && data.limit == true){
-                if(this.release === true) this._releaseDisplayObjects();
-            }
+            // if(this.releaseAfterDisplay === true && data.limit == true){
+            //     if(this.release === true) this._releaseDisplayObjects();
+            // }
             this._buildString();
         };
 
@@ -231,8 +247,8 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
     _renderString: function (msg) {
         var div = null;
 
-        dojo.empty(this._wgtNode);
-        div = dom.div({
+        construct.empty(this._wgtNode);
+        div = dom.create("div", {
             'class': 'formatstring'
         });
         div.innerHTML = msg;
@@ -242,7 +258,7 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
 
     _checkString: function (string, renderAsHTML) {
         if (string.indexOf("<script") > -1 || !renderAsHTML) {
-            string = dom.escapeHTML(string);
+            string = dom.escapeString(string);
         }
         return string;
     },
@@ -259,7 +275,7 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
         } else {
             options.selector = format;
 
-            datevalue = dojo.date.locale.format(new Date(value), options);
+            datevalue = locale.format(new Date(value), options);
         }
         return datevalue;
     },
@@ -331,7 +347,7 @@ return declare('formatstring.widget.formatstring', [_WidgetBase, _TemplatedMixin
     _resetSubscriptions: function () {
         // Release handle on previous object, if any.
         var i = 0;
-        this._releaseDisplayObjects();
+        // this._releaseDisplayObjects();
 
         for (i = 0; i < this._handles.length; i++) {
             if (this._handles[i]) {
